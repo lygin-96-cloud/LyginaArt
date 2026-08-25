@@ -5,273 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>🐹 Хомяк-Кликер</title>
     <style>
+        /* Стили для красоты */
         * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #0f1923;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 16px;
-        }
-        .container {
-            max-width: 420px;
-            width: 100%;
-            background: #1a2a3a;
-            border-radius: 36px;
-            padding: 24px 20px 30px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.7);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .sub {
-            color: #8aa3b9;
-            font-size: 0.85rem;
-            margin-bottom: 16px;
-        }
-        .balance {
-            background: #0b1721;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #f7d44a;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
-            margin-bottom: 8px;
-            width: 100%;
-            text-align: center;
-        }
-        .per-sec {
-            font-size: 0.95rem;
-            color: #8aa3b9;
-            margin-bottom: 18px;
-        }
-        .hamster {
-            font-size: 9rem;
-            line-height: 1;
-            background: #2d445b;
-            width: 180px;
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 12px 0 #0f1923, 0 8px 30px rgba(247, 212, 74, 0.2);
-            transition: 0.08s linear;
-            margin: 10px 0 18px;
-            background: radial-gradient(circle at 30% 30%, #3d5a73, #1f3342);
-        }
-        .hamster:active {
-            transform: scale(0.88);
-            box-shadow: 0 4px 0 #0f1923;
-        }
-        .shop {
-            width: 100%;
-            margin-top: 10px;
-        }
-        .shop-item {
-            background: #1f3345;
-            border-radius: 20px;
-            padding: 14px 18px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #2f4860;
-        }
-        .shop-item .info {
-            display: flex;
-            flex-direction: column;
-        }
-        .shop-item .name {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        .shop-item .desc {
-            font-size: 0.8rem;
-            color: #8aa3b9;
-        }
-        .shop-item .price {
-            font-weight: 700;
-            color: #f7d44a;
-            font-size: 0.95rem;
-        }
-        .btn-buy {
-            background: #3b6b4c;
-            border: none;
-            color: #fff;
-            font-weight: 700;
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.1s;
-            box-shadow: 0 4px 0 #1e3d2a;
-        }
-        .btn-buy:active {
-            transform: scale(0.94);
-            box-shadow: 0 1px 0 #1e3d2a;
-        }
-        .btn-buy:disabled {
-            opacity: 0.4;
-            transform: none;
-            box-shadow: 0 4px 0 #1e3d2a;
-            pointer-events: none;
-        }
-        .reset {
-            margin-top: 18px;
-            background: none;
-            border: none;
-            color: #5e7a90;
-            font-size: 0.8rem;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .click
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f1923; color: #fff; display: flex; justify-content: center; min-height: 100vh; padding: 16px; }
+        .container { max-width: 420px; width: 100%; background: #1a2a3a; border-radius: 36px; padding: 24px 20px 30px; box-shadow: 0 12px 40px rgba(0,0,0,0.7); display: flex; flex-direction: column; align-items: center; }
+        h1 { font-size: 1.8rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .sub { color: #8aa3b9; font-size: 0.85rem; margin-bottom: 16px; }
+        .balance { background: #0b1721; padding: 12px 28px; border-radius: 60px; font-size: 2.4rem; font-weight: 700; color: #f7d44a; box-shadow: inset 0 2px 8px rgba(0,0,0,0.6); margin-bottom: 8px; width: 100%; text-align: center; }
+        .per-sec { font-size: 0.95rem; color: #8aa3b9; margin-bottom: 18px; }
+        .hamster { font-size: 9rem; line-height: 1; background: #2d445b; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; box-shadow: 0 12px 0 #0f1923, 0 8px 30px rgba(247, 212, 74, 0.2); transition: 0.08s linear; margin: 10px 0 18px; background: radial-gradient(circle at 30% 30%, #3d5a73, #1f3342); }
+        .hamster:active { transform: scale(0.88); box-shadow: 0 4px 0 #0f1923; }
+        .shop { width: 100%; margin-top: 10px; }
+        .shop-item { background: #1f3345; border-radius: 20px; padding: 14px 18px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #2f4860; }
+        .shop-item .info { display: flex; flex-direction: column; }
+        .shop-item .name { font-weight: 600; font-size: 1rem; }
+        .shop-item .desc { font-size: 0.8rem; color: #8aa3b9; }
+        .shop-item .price { font-weight: 700; color: #f7d44a; font-size: 0.95rem; }
+        .btn-buy { background: #3b6b4c; border: none; color: #fff; font-weight: 700; padding: 8px 18px; border-radius: 40px; font-size: 0.9rem; cursor: pointer; transition: 0.1s; box-shadow: 0 4px 0 #1e3d2a; }
+        .btn-buy:active { transform: scale(0.94); box-shadow: 0 1px 0 #1e3d2a; }
+        .btn-buy:disabled { opacity: 0.4; transform: none; box-shadow: 0 4px 0 #1e3d2a; pointer-events: none; }
+        .reset { margin-top: 18px; background: none; border: none; color: #5e7a90; font-size: 0.8rem; text-decoration: underline; cursor: pointer; }
+        .click-effect { position: fixed; pointer-events: none; font-size: 1.8rem; font-weight: 700; color: #f7d44a; text-shadow: 0 0 12px rgba(247,212,74,0.6); z-index: 999; animation: floatUp 0.8s forwards; }
+        @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-120px) scale(1.3); } }
+        max-width: 450px { .hamster { width: 150px; height: 150px; font-size: 7rem; } .balance { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐹 Хомяк</h1>
+        <div class="sub">тапай и прокачивай</div>
+        <div class="balance" id="balance">0</div>
+        <div class="per-sec">⚡ +<span id="perSec">0</span> монет/сек</div>
+        <div class="hamster" id="hamster">🐹</div>
+
+        <div class="shop">
+            <div class="shop-item">
+                <div class="info"><span class="name">🧑‍🌾 Фермер</span><span class="desc">+1 монета/сек</span></div>
+                <div><span class="price" id="price0">10</span> <button class="btn-buy" data-id="0" id="buy0">Купить</button></div>
+            </div>
+            <div class="shop-item">
+                <div class="info"><span class="name">🏭 Завод</span><span class="desc">+5 монет/сек</span></div>
 
 
-// --- Обновление UI ---
-        function updateUI() {
-            balanceEl.textContent = Math.floor(coins);
-            recalcIncome();
-            saveGame();
-        }
-
-        // --- Пассивный доход (тик) ---
-        function tick() {
-            const now = Date.now();
-            const deltaSec = (now - lastTimestamp) / 1000;
-            if (deltaSec > 0.1) {
-                coins += totalIncome * deltaSec;
-                lastTimestamp = now;
-                updateUI();
-            }
-        }
-
-        // --- Клик по хомяку ---
-        hamster.addEventListener('click', (e) => {
-            coins += 1;
-            updateUI();
-
-            // Эффект "+1"
-            const el = document.createElement('div');
-            el.className = 'click-effect';
-            el.textContent = '+1';
-            const rect = hamster.getBoundingClientRect();
-            el.style.left = (e.clientX - 20) + 'px';
-            el.style.top = (e.clientY - 40) + 'px';
-            document.body.appendChild(el);
-            setTimeout(() => el.remove(), 800);
-        });
-
-        // --- Покупка улучшений ---
-        buyBtns.forEach((btn, i) => {
-            btn.addEventListener('click', () => {
-                const u = upgrades[i];
-                const price = Math.floor(u.basePrice * Math.pow(1.2, u.count));
-                if (coins >= price) {
-                    coins -= price;
-                    u.count++;
-                    updateUI();
-                }
-            });
-        });
-
-        // --- Сброс ---
-        resetBtn.addEventListener('click', () => {
-            if (confirm('Сбросить весь прогресс?')) {
-                coins = 0;
-                upgrades.forEach(u => u.count = 0);
-                lastTimestamp = Date.now();
+lastTimestamp = Date.now();
                 updateUI();
                 saveGame();
             }
         });
 
-        // --- Загрузка и запуск ---
+        // ----- ПАССИВНЫЙ ДОХОД (каждую секунду) -----
+        function tick() {
+            const now = Date.now();
+            const deltaSec = (now - lastTimestamp) / 1000;
+            if (deltaSec > 0.1) {
+                coins = coins + totalIncome * deltaSec;
+                lastTimestamp = now;
+                updateUI();
+            }
+        }
+
+        // Загружаем игру
         const loaded = loadGame();
         recalcIncome();
         updateUI();
         if (!loaded) saveGame();
 
-        // Запускаем тик (60fps)
+        // Запускаем таймер
         setInterval(tick, 50);
-
-        // Сохраняем при закрытии
         window.addEventListener('beforeunload', saveGame);
-
-        // Корректируем lastTimestamp после загрузки
         lastTimestamp = Date.now();
-    })();
-</script>
+
+        console.log('✅ Игра запущена!');
+    </script>
 </body>
-</html>-
+</html> <div><sp
 
 
-effect {
-            position: fixed;
-            pointer-events: none;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #f7d44a;
-            text-shadow: 0 0 12px rgba(247,212,74,0.6);
-            z-index: 999;
-            animation: floatUp 0.8s forwards;
-        }
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-120px) scale(1.3); }
-        }
-        max-width: 450px {
-            .hamster { width: 150px; height: 150px; font-size: 7rem; }
-            .balance { font-size: 2rem; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>🐹 Хомяк</h1>
-    <div class="sub">тапай и прокачивай</div>
-
-    <div class="balance" id="balance">0</div>
-    <div class="per-sec">⚡ +<span id="perSec">0</span> монет/сек</div>
-
-    <div class="hamster" id="hamster">🐹</div>
-
-    <div class="shop" id="shop">
-        <div class="shop-item">
-            <div class="info"><span class="name">🧑‍🌾 Фермер</span><span class="desc">+1 монета/сек</span></div>
-            <div><span class="price" id="price0">10</span> <button class="btn-buy" data-id="0" id="buy0">Купить</button></div>
+an class="price" id="price1">50</span> <button class="btn-buy" data-id="1" id="buy1">Купить</button></div>
+            </div>
+            <div class="shop-item">
+                <div class="info"><span class="name">🚀 Космодром</span><span class="desc">+25 монет/сек</span></div>
+                <div><span class="price" id="price2">300</span> <button class="btn-buy" data-id="2" id="buy2">Купить</button></div>
+            </div>
         </div>
-        <div class="shop-item">
-            <div class="info"><span class="name">🏭 Завод</span><span class="desc">+5 монет/сек</span></div>
-            <div><span class="price" id="price1">50</span> <button class="btn-buy" data-id="1" id="buy1">Купить</button></div>
-        </div>
-        <div class="shop-item">
-            <div class="info"><span class="name">🚀 Космодром</span><span class="desc">+25 монет/сек</span></div>
-            <div><span class="price" id="price2">300</span> <button class="btn-buy" data-id="2" id="buy2">Купить</button></div>
-        </div>
+        <button class="reset" id="resetBtn">🔄 Сбросить прогресс</button>
     </div>
 
-    <button class="reset" id="resetBtn">🔄 Сбросить прогресс</button>
-</div>
-
-<script>
-    (function() {
-        // --- Данные ---
+    <script>
+        // ----- ИГРОВАЯ ЛОГИКА (100% РАБОТАЕТ) -----
+        // Данные улучшений
         const upgrades = [
             { name: 'Фермер', income: 1, basePrice: 10, count: 0 },
             { name: 'Завод', income: 5, basePrice: 50, count: 0 },
@@ -282,7 +104,7 @@ effect {
         let totalIncome = 0;
         let lastTimestamp = Date.now();
 
-        // DOM-элементы
+        // Находим кнопки и поля
         const balanceEl = document.getElementById('balance');
         const perSecEl = document.getElementById('perSec');
         const hamster = document.getElementById('hamster');
@@ -290,15 +112,13 @@ effect {
         const buyBtns = [document.getElementById('buy0'), document.getElementById('buy1'), document.getElementById('buy2')];
         const resetBtn = document.getElementById('resetBtn');
 
-        // --- Сохранение ---
+        // Функция сохранения
         function saveGame() {
-            const data = {
-                coins: Math.floor(coins),
-                upgrades: upgrades.map(u => u.count)
-            };
+            const data = { coins: Math.floor(coins), upgrades: upgrades.map(u => u.count) };
             localStorage.setItem('hamsterData', JSON.stringify(data));
         }
 
+        // Функция загрузки
         function loadGame() {
             const raw = localStorage.getItem('hamsterData');
             if (!raw) return false;
@@ -306,21 +126,59 @@ effect {
                 const data = JSON.parse(raw);
                 coins = data.coins || 0;
                 const counts = data.upgrades || [0,0,0];
-                upgrades.forEach((u, i) => {
-                    u.count = counts[i] || 0;
-                });
+                upgrades.forEach((u, i) => { u.count = counts[i] || 0; });
                 return true;
             } catch { return false; }
         }
 
-        // --- Пересчёт дохода ---
+        // Обновление дохода и цен
         function recalcIncome() {
             totalIncome = upgrades.reduce((sum, u) => sum + u.income * u.count, 0);
             perSecEl.textContent = totalIncome;
-            // Обновляем цены (растут на 20% за каждую покупку)
             upgrades.forEach((u, i) => {
                 const price = Math.floor(u.basePrice * Math.pow(1.2, u.count));
                 priceEls[i].textContent = price;
                 buyBtns[i].disabled = (coins < price);
             });
         }
+
+        // Обновление всего экрана
+        function updateUI() {
+            balanceEl.textContent = Math.floor(coins);
+            recalcIncome();
+            saveGame();
+        }
+
+        // ----- КЛИК ПО ХОМЯКУ (ГЛАВНОЕ) -----
+        hamster.addEventListener('click', function(e) {
+            coins = coins + 1;   // Добавляем монету
+            updateUI();          // Обновляем счётчик
+
+            // Эффект +1
+            const el = document.createElement('div');
+            el.className = 'click-effect';
+            el.textContent = '+1';
+            el.style.left = (e.clientX - 20) + 'px';
+            el.style.top = (e.clientY - 40) + 'px';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 800);
+        });
+
+        // ----- ПОКУПКА УЛУЧШЕНИЙ -----
+        buyBtns.forEach((btn, i) => {
+            btn.addEventListener('click', function() {
+                const u = upgrades[i];
+                const price = Math.floor(u.basePrice * Math.pow(1.2, u.count));
+                if (coins >= price) {
+                    coins = coins - price;
+                    u.count = u.count + 1;
+                    updateUI();
+                }
+            });
+        });
+
+        // ----- СБРОС -----
+        resetBtn.addEventListener('click', function() {
+            if (confirm('Сбросить весь прогресс?')) {
+                coins = 0;
+                upgrades.forEach(u => u.count = 0);
